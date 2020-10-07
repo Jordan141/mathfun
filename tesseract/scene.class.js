@@ -1,3 +1,5 @@
+import Matrix from './matrix.js'
+
 class Scene {
   constructor(canvas) {
     this.canvas = canvas
@@ -16,7 +18,10 @@ class Scene {
     const { width, height } = this.canvas
     this.context.fillStyle = this.background
     this.context.fillRect(0, 0, width, height)
-    
+    const linesAsMatrices = this.lines.map(line => {
+      return line.map(vertex => Matrix.fromArray(vertex))
+    })
+    console.log(linesAsMatrices)
   }
 
   addLines(lines) {

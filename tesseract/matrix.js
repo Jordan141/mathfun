@@ -182,3 +182,5 @@ class Matrix {
 function boolToInt(f) {
     return f ? 1 : 0
 }
+
+export default Matrix
