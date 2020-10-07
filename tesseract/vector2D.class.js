@@ -8,6 +8,17 @@ class Vector2D extends Vector {
     return Vector2D.calculateDistance(new Vector2D(), this)
   }
 
+  convertToUnitVector() {
+    const length = this.calculateLength()
+    const proportionToScaleDown = 1 / length
+    return Vector2D.fromArray(
+      [
+        x * proportionToScaleDown,
+        y * proportionToScaleDown
+      ]
+    )
+  }
+
   static fromArray(array) {
     const vector = new Vector2D()
     vector.data = array
@@ -45,7 +56,7 @@ class Vector2D extends Vector {
 
   static calculateUnitVectorFromAToB(pointA, pointB) {
     const vector = Vector2D.calculateVectorFromAToB(pointA, pointB) 
-    return Vector2D.convertToUnitVector(vector)
+    return vector.convertToUnitVector()
   }
 
   static calculateVectorFromAToB(aX, aY, bX, bY) {
@@ -56,16 +67,7 @@ class Vector2D extends Vector {
     return {x: xDifference, y: yDifference}
   }
 
-  static convertToUnitVector(vector) {
-    const length = vector.calculateLength()
-    const proportionToScaleDown = 1 / length
-    return Vector2D.fromArray(
-      [
-        x * proportionToScaleDown,
-        y * proportionToScaleDown
-      ]
-    )
-  }
+
 }
 
 export default Vector2D
