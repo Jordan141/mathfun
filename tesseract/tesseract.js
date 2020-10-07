@@ -245,7 +245,7 @@ function prepare() {
         }
 
         pt = Matrix.multiply(Matrix.perspective(4, 2, pt.toVec.w), pt)
-        pt = pt.toVec.mult(scl)
+        //pt = pt.toVec.mult(scl)
         projected[i] = (pt)
     }
     console.log(projected)
@@ -256,7 +256,14 @@ function Vector(x, y, z) {
     return {
         x,
         y,
-        z
+        z,
+        mult: function(x, y ,z) {
+            this.x *= x.x;
+            this.y *= x.y;
+            this.z *= x.z
+            console.log(x, y, z)
+            return this
+        }
     }
 }
 
