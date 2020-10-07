@@ -1,7 +1,8 @@
 class Camera {
-  constructor(position, rotation) {
+  constructor(position, rotation, distanceToLens = 10) {
     this.position = position
     this.rotation = rotation
+    this.distanceToLens = distanceToLens
   }
 }
 
