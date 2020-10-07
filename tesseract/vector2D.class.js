@@ -4,6 +4,10 @@ class Vector2D extends Vector {
     super(2)
   }
 
+  calculateLength() {
+    return Vector2D.calculateDistance(new Vector2D(), this)
+  }
+
   static fromArray(array) {
     const vector = new Vector2D()
     vector.data = array
