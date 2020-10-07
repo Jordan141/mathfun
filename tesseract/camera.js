@@ -1,9 +1,0 @@
-
-
-function createScene() {
-  
-}
-
-export {
-  createScene
-}
