@@ -21,7 +21,7 @@ class Scene {
     const linesAsMatrices = this.lines.map(line => {
       return line.map(vertex => Matrix.fromArray(vertex))
     })
-    console.log(linesAsMatrices)
+    console.log('matrices', linesAsMatrices)
   }
 
   addLines(lines) {
