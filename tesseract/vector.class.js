@@ -17,7 +17,7 @@ class Vector {
   }
 
   static fromArray(array) {
-    const vector = new Vector2D()
+    const vector = new Vector(array.length)
     vector.data = array
     return vector
   }
