@@ -1,3 +1,16 @@
+let points = []
+let projected = []
+
+const X = 0,
+Y = 1,
+Z = 2,
+W = 3,
+scl = 75
+
+let speed, theta = 0
+let permutations = []
+let order
+
 class Matrix {
     constructor(rows, cols) {
         this.rows = rows
@@ -154,9 +167,9 @@ class Matrix {
         return create4dVector(this.data[0][0], this.data[1][0], this.data[2][0], this.data[3][0]);
     }
     else if (this.rows == 3)
-        return createVector(this.data[0][0], this.data[1][0], this.data[2][0]);
+        return new Vector(this.data[0][0], this.data[1][0], this.data[2][0]);
     else {
-        return createVector(this.data[0][0], this.data[1][0]);
+        return new Vector(this.data[0][0], this.data[1][0]);
     }
     }
 
@@ -183,4 +196,69 @@ function boolToInt(f) {
     return f ? 1 : 0
 }
 
-module.exports = Matrix
+function setup() {
+    points[0] = create4dVector(-1, -1, -1, 1);
+    points[1] = create4dVector(1, -1, -1, 1);
+    points[2] = create4dVector(1, 1, -1, 1);
+    points[3] = create4dVector(-1, 1, -1, 1);
+    points[4] = create4dVector(-1, -1, 1, 1);
+    points[5] = create4dVector(1, -1, 1, 1);
+    points[6] = create4dVector(1, 1, 1, 1);
+    points[7] = create4dVector(-1, 1, 1, 1);
+    points[8] = create4dVector(-1, -1, -1, -1);
+    points[9] = create4dVector(1, -1, -1, -1);
+    points[10] = create4dVector(1, 1, -1, -1);
+    points[11] = create4dVector(-1, 1, -1, -1);
+    points[12] = create4dVector(-1, -1, 1, -1);
+    points[13] = create4dVector(1, -1, 1, -1);
+    points[14] = create4dVector(1, 1, 1, -1);
+    points[15] = create4dVector(-1, 1, 1, -1)
+
+    //speed = radians(1)
+
+    permutations = [
+        [X, Y],
+        [X, Z],
+        [X, W],
+        [Y, Z],
+        [Y, W],
+        [Z, W]
+    ]
+
+    order = [1,4]
+}
+
+function create4dVector(x, y, z, w) {
+    let temp = new Vector(x, y, z)
+    temp.w = w
+    return temp
+}
+
+function prepare() {
+    setup()
+    for(let i = 0; i < points.length; i++) {
+        let p = points[i]
+        let pt = Matrix.fromVec(p)
+
+        for(let j = 0; j < order.length; j++) {
+            pt = Matrix.multiply(Matrix.rotation(permutations[order[j]][0], permutations[order[j]][1], 4, theta), pt)
+        }
+
+        pt = Matrix.multiply(Matrix.perspective(4, 2, pt.toVec.w), pt)
+        pt = pt.toVec.mult(scl)
+        projected[i] = (pt)
+    }
+    console.log(projected)
+}
+
+
+function Vector(x, y, z) {
+    return {
+        x,
+        y,
+        z
+    }
+}
+
+console.log(prepare())
+
