@@ -17,7 +17,11 @@ class Vector {
   }
 
   calculateLength() {
-    
+    const distanceSquared = this.data.reduce((accumulator, triangleSide) => {
+      accumulator += triangleSide ** 2
+      return accumulator
+    }, 0)
+    return Math.sqrt(distanceSquared)
   }
 
   scale(scaleBy) {
