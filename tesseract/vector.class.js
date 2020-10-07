@@ -1,6 +1,6 @@
 class Vector {
   constructor(dimensions) {
-    this.data = [...new Array(dimensions)]
+    this.data = [...new Array(dimensions)].fill(0)
     this.dimensions = dimensions
   }
 
@@ -8,65 +8,23 @@ class Vector {
     return this.data[0]
   }
 
-  static calculateAnglesBetweenVectors(vectorA, vectorB) {
-
+  get y() {
+    return this.data[1]
   }
 
-  static calculateDistance(pointA, pointB) {
-    const [aX, aY] = pointA
-    const [bX, bY] = pointB
-    const xDifference = Math.abs(aX - bX)
-    const yDifference = Math.abs(aY - bY)
-    const pythagorasASquared = xDifference ? xDifference ** 2 : 0
-    const pythagorasBSquared = yDifference ? yDifference ** 2 : 0
-    return Math.sqrt(pythagorasASquared + pythagorasBSquared)
+  get z() {
+    return this.data[1]
   }
 
-  static calculateUnitVectorFromAToB(pointA, pointB) {
-    const vector = getVectorFromAToB(aX, aY, bX, bY) 
-    return convertVectorToUnitVector(vector.x, vector.y)
+  static fromArray(array) {
+    const vector = new Vector2D()
+    vector.data = array
+    return vector
   }
-}
 
-function pointAlongCircle({
-  position,
-  size,
-  degree
-}) {
-  return {
-      x: size * Math.sin(degree) + position.x,
-      y: size * Math.cos(degree) + position.y
+  static clone(vector) {
+    return vector.constructor.fromArray(vector.data)
   }
 }
 
-function isEven(number) {
-  return number % 2 === 0
-}
-
-function calculateDistance(aX, aY, bX, bY) {
-  const xDifference = Math.abs(aX - bX)
-  const yDifference = Math.abs(aY - bY)
-  const pythagorasASquared = xDifference ? xDifference ** 2 : 0
-  const pythagorasBSquared = yDifference ? yDifference ** 2 : 0
-  return Math.sqrt(pythagorasASquared + pythagorasBSquared)
-}
-
-function getUnitVectorFromAToB(aX, aY, bX, bY) {
-  const vector = getVectorFromAToB(aX, aY, bX, bY) 
-  return convertVectorToUnitVector(vector.x, vector.y)
-}
-
-function convertVectorToUnitVector(x, y) {
-  const length = calculateDistance(0, 0, x, y)
-  const proportionToScaleDown = 1 / length
-  return {
-      x: x * proportionToScaleDown,
-      y: y * proportionToScaleDown
-  }
-}
-
-function getVectorFromAToB(aX, aY, bX, bY) {
-  const xDifference = bX - aX
-  const yDifference = bY - aY
-  return {x: xDifference, y: yDifference}
-}
+export default Vector

@@ -1,16 +1,7 @@
 import Vector from './vector.class'
 class Vector2D extends Vector {
   constructor() {
-    this.data = [...new Array(dimensions)]
-    this.dimensions = 2
-  }
-
-  get x() {
-    return this.data[0]
-  }
-
-  get y() {
-    return this.data[1]
+    super(2)
   }
 
   static fromArray(array) {
@@ -41,7 +32,7 @@ class Vector2D extends Vector {
 
   static calculateUnitVectorFromAToB(pointA, pointB) {
     const vector = Vector2D.calculateVectorFromAToB(pointA, pointB) 
-    return convertVectorToUnitVector(vector.x, vector.y)
+    return Vector2D.convertToUnitVector(vector)
   }
 
   static calculateVectorFromAToB(aX, aY, bX, bY) {
@@ -52,8 +43,8 @@ class Vector2D extends Vector {
     return {x: xDifference, y: yDifference}
   }
 
-  static convertVectorToUnitVector(vector) {
-    const length = calculateDistance(0, 0, vector.x, vector.y)
+  static convertToUnitVector(vector) {
+    const length = Vector2D.calculateDistance(new Vector2D(), Vector2D.fromArray([vector.x, vector.y]))
     const proportionToScaleDown = 1 / length
     return Vector2D.fromArray(
       [
@@ -63,3 +54,5 @@ class Vector2D extends Vector {
     )
   }
 }
+
+export default Vector2D
