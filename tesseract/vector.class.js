@@ -13,7 +13,7 @@ class Vector {
   }
 
   get z() {
-    return this.data[1]
+    return this.data[2]
   }
 
   static fromArray(array) {
