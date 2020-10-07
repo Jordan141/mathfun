@@ -10,6 +10,15 @@ class Vector2D extends Vector {
     return vector
   }
 
+  static createDirectionVector(angle) {
+    return Vector2D.fromArray(
+      [
+        Math.cos(angle),
+        Math.sin(angle)
+      ]
+    )
+  }
+
   static calculateAnglesBetweenVectors(vectorA, vectorB) {
     const [aX, aY] = vectorA.data
     const [bX, bY] = vectorB.data
