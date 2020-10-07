@@ -126,6 +126,10 @@ class Matrix {
         return rot
     }
 
+    static getAngle(vectorA, vectorB) {
+        return 
+    }
+
     static fromVec(vec) {
         if (vec.w) {
             let temp = new Matrix(4, 1)
