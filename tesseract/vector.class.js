@@ -16,6 +16,10 @@ class Vector {
     return this.data[2]
   }
 
+  scale(scaleBy) {
+    this.data = this.data.map(x => x * scaleBy)
+  }
+
   static fromArray(array) {
     const vector = new Vector(array.length)
     vector.data = array

@@ -57,7 +57,7 @@ class Vector2D extends Vector {
   }
 
   static convertToUnitVector(vector) {
-    const length = Vector2D.calculateDistance(new Vector2D(), Vector2D.fromArray([vector.x, vector.y]))
+    const length = vector.calculateLength()
     const proportionToScaleDown = 1 / length
     return Vector2D.fromArray(
       [
