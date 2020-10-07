@@ -11,6 +11,10 @@ let speed, theta = 0
 let permutations = []
 let order
 
+function radians(degrees) {
+    return degrees * (Math.PI/180)
+}
+
 class Matrix {
     constructor(rows, cols) {
         this.rows = rows
@@ -214,7 +218,7 @@ function setup() {
     points[14] = create4dVector(1, 1, 1, -1);
     points[15] = create4dVector(-1, 1, 1, -1)
 
-    //speed = radians(1)
+    speed = radians(1)
 
     permutations = [
         [X, Y],
@@ -234,7 +238,7 @@ function create4dVector(x, y, z, w) {
     return temp
 }
 
-function prepare() {
+function tryUsingThisAsDraw() {
     setup()
     for(let i = 0; i < points.length; i++) {
         let p = points[i]
@@ -248,7 +252,8 @@ function prepare() {
         //pt = pt.toVec.mult(scl)
         projected[i] = (pt)
     }
-    console.log(projected)
+    theta += speed
+
 }
 
 
@@ -267,5 +272,5 @@ function Vector(x, y, z) {
     }
 }
 
-console.log(prepare())
+console.log(tryUsingThisAsDraw())
 
