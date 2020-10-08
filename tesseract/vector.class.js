@@ -35,7 +35,7 @@ class Vector {
   }
 
   static clone(vector) {
-    return vector.constructor.fromArray(vector.data)
+    return vector.constructor.fromArray([...vector.data])
   }
 }
 

@@ -21,7 +21,7 @@ class Vector2D extends Vector {
 
   static fromArray(array) {
     const vector = new Vector2D()
-    vector.data = array
+    vector.data = [...array]
     return vector
   }
 
